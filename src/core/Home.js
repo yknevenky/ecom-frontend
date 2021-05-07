@@ -25,17 +25,20 @@ export default function Home() {
 
   return (
     <Base title="Home Page" description="Welcome to the Tshirt Store">
-      <div className="row text-center">
-        <h1 className="text-white">All of tshirts</h1>
+      <div className=" container rounded bg-light">
+      <h1 className="text-dark text-left p-5">T shirts</h1>
+      <div className="row container bg-white rounded text-center">
+       
         <div className="row">
           {products.map((product, index) => {
             return (
-              <div key={index} className="col-4 mb-4">
+              <div key={index} className="col-4">
                 <Card product={product} />
               </div>
             );
           })}
         </div>
+      </div>
       </div>
     </Base>
   );

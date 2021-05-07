@@ -10,31 +10,31 @@ const AdminDashboard = () => {
 
   const adminLeftSide = () => {
     return (
-      <div className="card">
-        <div className="card-header bg-dark text-white">Admin Navigation</div>
+      <div className="card rounded">
+        <div className="card-header text h4">Admin Navigation</div>
         <ul className="list-group">
           <li className="list-group-item">
-            <Link className="nav-link text-success" to="/admin/create/category">
+            <Link className="nav-link text-primary" to="/admin/create/category">
               Create category
             </Link>
           </li>
           <li className="list-group-item">
-            <Link className="nav-link text-success" to="/admin/categories">
+            <Link className="nav-link text-primary" to="/admin/categories">
               Manage categories
             </Link>
           </li>
           <li className="list-group-item">
-            <Link className="nav-link text-success" to="/admin/create/product">
+            <Link className="nav-link text-primary" to="/admin/create/product">
               Create product
             </Link>
           </li>
           <li className="list-group-item">
-            <Link className="nav-link text-success" to="/admin/products">
+            <Link className="nav-link text-primary" to="/admin/products">
               Manage products
             </Link>
           </li>
           <li className="list-group-item">
-            <Link className="nav-link text-success" to="/admin/orders">
+            <Link className="nav-link text-primary" to="/admin/orders">
               Manage Orders
             </Link>
           </li>
@@ -45,7 +45,7 @@ const AdminDashboard = () => {
 
   const adminRightSide = () => {
     return (
-      <div className="card mb-4">
+      <div className="card mb-4 rounded">
         <h4 className="card-header">Admin Information</h4>
         <ul className="list-group">
           <li className="list-group-item">
@@ -68,9 +68,9 @@ const AdminDashboard = () => {
     <Base
       title="AdminDashboard page"
       description="Manage all your products here"
-      className="container bg-info p-4"
+      className="container rounded bg-light p-4"
     >
-      <div className="row">
+      <div className="row rounded">
         <div className="col-3">{adminLeftSide()}</div>
         <div className="col-9">{adminRightSide()}</div>
       </div>

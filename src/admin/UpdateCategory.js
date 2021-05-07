@@ -73,7 +73,7 @@ const UpdateCategory = ({ match }) => {
           <label className="form-label">Category name:</label>
           <input className="form-control" onChange={catChangeHandler} value={categoryName} />
         </div>
-        <button onClick={onSubmitHandler}>Update</button>
+        <button className="btn btn-success" onClick={onSubmitHandler}>Update</button>
       </form>
     );
   };
@@ -82,14 +82,13 @@ const UpdateCategory = ({ match }) => {
     <Base
       title="Update a category"
       description="update a category"
-      className="container p-4"
+      className="container bg-white p-4"
+
     >
-      <div className="row bg-dark text-white rounded">
-        <div className="col-md-8 offset-md-2">
+      
           {successMessage()}
           {updateCategoryForm()}
-        </div>
-      </div>
+       
     </Base>
   );
 };

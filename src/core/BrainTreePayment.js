@@ -45,7 +45,7 @@ const BrainTreePayment = ({ products, setReload = f => f, reload = undefined }) 
             </button>
           </div>
         ) : (
-          <h3>Please login or add something to cart</h3>
+          <h5>Add something to cart</h5>
         )}
       </div>
     );
@@ -97,7 +97,7 @@ const BrainTreePayment = ({ products, setReload = f => f, reload = undefined }) 
 
   return (
     <div>
-      <h3>Your bill is {getAmount()} $</h3>
+      <h3 className="text-left text-danger">Your bill is <span className="text-warning"> {getAmount()}$</span> </h3>
       {showbtdropIn()}
     </div>
   );

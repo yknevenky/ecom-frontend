@@ -24,11 +24,11 @@ const ManageProducts = () => {
 
   useEffect(() => {
     preload();
-  },[]);
+  }, []);
 
   const deleteThisProduct = (productId) => {
     deleteProduct(productId, user._id, token).then((data) => {
-      console.log(data)
+      console.log(data);
       if (data.error) {
         console.log(data.error);
       } else {
@@ -37,29 +37,31 @@ const ManageProducts = () => {
     });
   };
   return (
-    <Base title="Welcome admin" description="Manage products here">
-      <h2 className="mb-4">All products:</h2>
-      <Link className="btn btn-info" to={`/admin/dashboard`}>
+    <Base title="Welcome admin" description="Manage products here" className="bg-white rounded container py-3">
+      <Link className="btn btn-info mb-3" to={`/admin/dashboard`}>
         <span className="">Admin Home</span>
       </Link>
-      <div className="row">
-        <div className="col-12">
-
+      <h2 className="mb-4">All products:</h2>
+      <div className="list-group">
+        <div className="list-group-item">
           {products.map((product, index) => {
             return (
-              <div key={index} className="row text-center mb-2 ">
-                <div className="col-4">
-                  <h3 className="text-white text-left">{product.name}</h3>
+              <div key={index} className="row text-center text-dark p-2">
+                <div className="col-1 text-primary">
+                  <h3>{index + 1} .</h3>
                 </div>
-                <div className="col-4">
+                <div className="col-7">
+                  <h3 className="text-left">{product.name}</h3>
+                </div>
+                <div className="col-2">
                   <Link
                     className="btn btn-success"
                     to={`/admin/product/update/${product._id}`}
                   >
-                    <span className="">Update</span>
+                    Update
                   </Link>
                 </div>
-                <div className="col-4">
+                <div className="col-2">
                   <button
                     onClick={() => {
                       deleteThisProduct(product._id);

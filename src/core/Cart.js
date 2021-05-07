@@ -14,7 +14,7 @@ const Cart = () => {
     setProducts(loadCart());
   }, [reload]);
 
-  const loadAllProducts = products => {
+  const loadAllProducts = (products) => {
     return (
       <div>
         <h2>This section is to load products</h2>
@@ -31,22 +31,19 @@ const Cart = () => {
       </div>
     );
   };
-  const loadCheckout = () => {
-    return (
-      <div>
-        <h2>This section for checkout</h2>
-      </div>
-    );
-  };
 
   return (
-    <Base title="Cart Page" description="Ready to checkout">
-      <div className="row text-center">
+    <Base
+      title="Cart Page"
+      description="Ready to checkout"
+      className="py-5 px-4 bg-white text-dark rounded"
+    >
+      <div className="row">
         <div className="col-6">
           {products.length > 0 ? (
             loadAllProducts(products)
           ) : (
-            <h4>No products</h4>
+            <h4 className="text-left">Cart is empty</h4>
           )}
         </div>
         <div className="col-6">

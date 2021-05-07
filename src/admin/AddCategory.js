@@ -11,14 +11,7 @@ const AddCategory = () => {
 
   const { user, token } = isAuthenticated();
 
-  const goBack = () => (
-    <div className="mt-5">
-      <Link className="btn btn-sm btn-success mb-3" to="/admin/dashboard">
-        Admin Home
-      </Link>
-    </div>
-  );
-
+ 
   const handleChange = event => {
     setError("");
     setName(event.target.value);
@@ -56,7 +49,7 @@ const AddCategory = () => {
   const myCategoryForm = () => (
     <form>
       <div className="form-group">
-        <p className="lead">Enter the category</p>
+        <p className="h2">Enter the category</p>
         <input
           type="text"
           className="form-control my-3"
@@ -66,9 +59,23 @@ const AddCategory = () => {
           required
           placeholder="For Ex. Summer"
         />
-        <button onClick={onSubmit} className="btn btn-outline-info">
-          Create Category
-        </button>
+       <div className="row m-5">
+        <div className="col-2">
+          <button
+            type="submit"
+            onClick={onSubmit}
+            className="btn btn-warning mr-3"
+          >
+            Add Category
+          </button>
+        </div>
+        <div className="col-8"></div>
+        <div className="col-2">
+          <Link to="/admin/dashboard" className="btn btn-secondary">
+            Admin Home
+          </Link>
+        </div>
+      </div>
       </div>
     </form>
   );
@@ -77,14 +84,15 @@ const AddCategory = () => {
     <Base
       title="Create a category here"
       description="Add a new category for new tshirts"
-      className="container bg-info p-4"
+      className="container rounded p-2 bg-white"
     >
-      <div className="row bg-white rounded">
+     
+
+      <div className="row pt-4">
         <div className="col-md-8 offset-md-2">
           {successMessage()}
           {warningMessage()}
           {myCategoryForm()}
-          {goBack()}
         </div>
       </div>
     </Base>

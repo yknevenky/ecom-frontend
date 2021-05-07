@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import {
   getAllCategories,
   getProduct,
-  updateProduct
+  updateProduct,
 } from "./helper/adminapicall";
 import { isAuthenticated } from "../auth/helper/index";
 
@@ -23,7 +23,7 @@ const UpdateProduct = ({ match }) => {
     error: "",
     createdProduct: "",
     getaRedirect: false,
-    formData: ""
+    formData: "",
   });
 
   const {
@@ -37,11 +37,11 @@ const UpdateProduct = ({ match }) => {
     error,
     createdProduct,
     getaRedirect,
-    formData
+    formData,
   } = values;
 
-  const preload = productId => {
-    getProduct(productId).then(data => {
+  const preload = (productId) => {
+    getProduct(productId).then((data) => {
       if (data.error) {
         setValues({ ...values, error: data.error });
       } else {
@@ -53,21 +53,21 @@ const UpdateProduct = ({ match }) => {
           price: data.price,
           category: data.category._id,
           stock: data.stock,
-          formData: new FormData()
+          formData: new FormData(),
         });
       }
     });
   };
 
   const preloadCategories = () => {
-    getAllCategories().then(data => {
+    getAllCategories().then((data) => {
       if (data.error) {
         setValues({ ...values, error: data.error });
       } else {
-        console.log(data,"Hey hey")
+        console.log(data, "Hey hey");
         setValues({
           categories: data,
-          formData: new FormData()
+          formData: new FormData(),
         });
       }
     });
@@ -78,12 +78,12 @@ const UpdateProduct = ({ match }) => {
   }, []);
 
   //TODO: work on it
-  const onSubmit = event => {
+  const onSubmit = (event) => {
     event.preventDefault();
     setValues({ ...values, error: "", loading: true });
-    console.log("FORMDTA OF UPDATE PROD", formData)
+    console.log("FORMDTA OF UPDATE PROD", formData);
     updateProduct(match.params.productId, user._id, token, formData).then(
-      data => {
+      (data) => {
         if (data.error) {
           setValues({ ...values, error: data.error });
         } else {
@@ -95,14 +95,14 @@ const UpdateProduct = ({ match }) => {
             photo: "",
             stock: "",
             loading: false,
-            createdProduct: data.name
+            createdProduct: data.name,
           });
         }
       }
     );
   };
 
-  const handleChange = name => event => {
+  const handleChange = (name) => (event) => {
     const value = name === "photo" ? event.target.files[0] : event.target.value;
     formData.set(name, value);
     setValues({ ...values, [name]: value });
@@ -118,20 +118,20 @@ const UpdateProduct = ({ match }) => {
   );
 
   const createProductForm = () => (
-    <form>
-      <span>Post photo</span>
-      <div className="form-group">
-        <label className="btn btn-block btn-success">
-          <input
-            onChange={handleChange("photo")}
-            type="file"
-            name="photo"
-            accept="image"
-            placeholder="choose a file"
-          />
-        </label>
+    <form className="mx-5 mt-5" >
+      <div className="form-group text-dark">
+        <label className="form-label">Change photo</label>
+        <input
+          onChange={handleChange("photo")}
+          type="file"
+          name="photo"
+          accept="image"
+          className="form-control"
+          placeholder="choose a file"
+        />
       </div>
       <div className="form-group">
+        <label className="form-label">Product name</label>
         <input
           onChange={handleChange("name")}
           className="form-control"
@@ -140,6 +140,7 @@ const UpdateProduct = ({ match }) => {
         />
       </div>
       <div className="form-group">
+        <label className="form-label">Description</label>
         <textarea
           onChange={handleChange("description")}
           className="form-control"
@@ -148,6 +149,7 @@ const UpdateProduct = ({ match }) => {
         />
       </div>
       <div className="form-group">
+        <label className="form-label">Price</label>
         <input
           onChange={handleChange("price")}
           type="number"
@@ -157,6 +159,7 @@ const UpdateProduct = ({ match }) => {
         />
       </div>
       <div className="form-group">
+        <label className="form-label">Category</label>
         <select
           onChange={handleChange("category")}
           className="form-control"
@@ -172,6 +175,7 @@ const UpdateProduct = ({ match }) => {
         </select>
       </div>
       <div className="form-group">
+        <label className="form-label">Stock</label>
         <input
           onChange={handleChange("stock")}
           type="number"
@@ -181,31 +185,34 @@ const UpdateProduct = ({ match }) => {
         />
       </div>
 
-      <button
-        type="submit"
-        onClick={onSubmit}
-        className="btn btn-outline-success mb-3"
-      >
-        Update Product
-      </button>
+      <div className="row m-5">
+        <div className="col-2">
+          <button
+            type="submit"
+            onClick={onSubmit}
+            className="btn btn-warning mr-3"
+          >
+            Update Product
+          </button>
+        </div>
+        <div className="col-8"></div>
+        <div className="col-2">
+          <Link to="/admin/dashboard" className="btn btn-secondary">
+            Admin Home
+          </Link>
+        </div>
+      </div>
     </form>
   );
 
   return (
     <Base
-      title="Add a product here!"
-      description="Welcome to product creation section"
-      className="container bg-info p-4"
+      title="Update the product here"
+      description="Update by entering the changes"
+      className="container rounded bg-white px-4 py-2"
     >
-      <Link to="/admin/dashboard" className="btn btn-md btn-dark mb-3">
-        Admin Home
-      </Link>
-      <div className="row bg-dark text-white rounded">
-        <div className="col-md-8 offset-md-2">
-          {successMessage()}
-          {createProductForm()}
-        </div>
-      </div>
+      {successMessage()}
+      {createProductForm()}
     </Base>
   );
 };
