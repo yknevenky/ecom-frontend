@@ -3,6 +3,7 @@ import "../styles.css";
 import { API } from "../backend";
 import Base from "./Base";
 import Card from "./Card";
+import {Link} from "react-router-dom";
 import { getProducts } from "./helper/coreapicalls";
 
 export default function Home() {
@@ -10,13 +11,19 @@ export default function Home() {
   const [error, setError] = useState(false);
 
   const loadAllProduct = () => {
-    getProducts().then(data => {
-      if (data.error) {
-        setError(data.error);
-      } else {
-        setProducts(data);
-      }
-    });
+    try {
+      getProducts().then((data) => {
+        console.log(data, "hi");
+        if (data.error) {
+          setError(data.error);
+        } else {
+          setProducts(data);
+        }
+      });
+    } catch (error) {
+      console.log("hahaha");
+      setProducts([]);
+    }
   };
 
   useEffect(() => {
@@ -26,19 +33,20 @@ export default function Home() {
   return (
     <Base title="Home Page" description="Welcome to the Tshirt Store">
       <div className=" container rounded bg-light">
-      <h1 className="text-dark text-left p-5">T shirts</h1>
-      <div className="row container bg-white rounded text-center">
-       
-        <div className="row">
-          {products.map((product, index) => {
-            return (
-              <div key={index} className="col-4">
-                <Card product={product} />
-              </div>
-            );
-          })}
+        <h1 className="text-dark text-left p-5">T shirts <span className="text-primary">&gt;</span></h1>
+        <div className="row container bg-white rounded text-center">
+          <div className="row">
+            {products.map((product, index) => {
+              return (
+                <div key={index} className="col-4">
+                 
+                    <Card product={product} />
+                  
+                </div>
+              );
+            })}
+          </div>
         </div>
-      </div>
       </div>
     </Base>
   );

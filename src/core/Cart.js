@@ -16,19 +16,23 @@ const Cart = () => {
 
   const loadAllProducts = (products) => {
     return (
-      <div>
-        <h2>This section is to load products</h2>
-        {products.map((product, index) => (
-          <Card
-            key={index}
-            product={product}
-            removeFromCart={true}
-            addtoCart={false}
-            setReload={setReload}
-            reload={reload}
-          />
-        ))}
-      </div>
+      <React.Fragment>
+        <h1 className="ml-3 mb-5">All your products</h1>
+        <div className="row">
+          {products.map((product, index) => (
+            <div className="col-3">
+              <Card
+                key={index}
+                product={product}
+                removeFromCart={true}
+                addtoCart={false}
+                setReload={setReload}
+                reload={reload}
+              />
+            </div>
+          ))}
+        </div>
+      </React.Fragment>
     );
   };
 
@@ -38,17 +42,18 @@ const Cart = () => {
       description="Ready to checkout"
       className="py-5 px-4 bg-white text-dark rounded"
     >
-      <div className="row">
-        <div className="col-6">
-          {products.length > 0 ? (
-            loadAllProducts(products)
-          ) : (
-            <h4 className="text-left">Cart is empty</h4>
-          )}
-        </div>
-        <div className="col-6">
-          <BrainTreePayment products={products} setReload={setReload} />
-        </div>
+      <div className="row mx-5">
+        {products.length > 0 ? (
+          loadAllProducts(products)
+        ) : (
+          <h4 className="text-left">Cart is empty</h4>
+        )}
+      </div>
+
+      <div className="card m-5 jumbotron bg-light p-5">
+        <h1 className="mb-5">CHECK OUT</h1>
+
+        <BrainTreePayment products={products} setReload={setReload} />
       </div>
     </Base>
   );

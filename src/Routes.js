@@ -15,6 +15,7 @@ import UpdateProduct from "./admin/UpdateProduct";
 import UpdateCategory from "./admin/UpdateCategory";
 import Cart from "./core/Cart";
 import Orders from "./admin/Orders";
+import ProductDetailPage from "./core/ProductDetailPage";
 
 
 function Routes() {
@@ -54,6 +55,11 @@ function Routes() {
           path="/admin/category/update/:categoryId"
           exact
           component={UpdateCategory}
+        />
+         <Route
+          path="/product/:productId"
+          exact
+          component={ProductDetailPage}
         />
       </Switch>
     </BrowserRouter>
