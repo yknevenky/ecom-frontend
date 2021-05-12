@@ -23,6 +23,7 @@ const AddCategory = () => {
     setSuccess(false);
 
     //backend request fired
+    console.log(user._id, token, name, "HAHAHAHAHAHAHA")
     createCategory(user._id, token, { name }).then(data => {
       if (data.error) {
         setError(true);

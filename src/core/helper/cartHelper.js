@@ -19,7 +19,7 @@ export const addItemToCart = (item, next) => {
         console.log("Blah blah", localStorage.getItem("cart"))
         return JSON.parse(localStorage.getItem("cart"));
       }else{
-        return null
+        return []
       }
     }
   };

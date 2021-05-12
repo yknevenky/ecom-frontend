@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import Base from "../core/Base";
-import { Link } from "react-router-dom";
 import { getCategoryById, updateCategory } from "./helper/adminapicall";
 import { isAuthenticated } from "../auth/helper/index";
 

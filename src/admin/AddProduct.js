@@ -28,11 +28,7 @@ const AddProduct = () => {
     price,
     stock,
     categories,
-    category,
-    loading,
-    error,
     createdProduct,
-    getaRedirect,
     formData,
   } = values;
 
@@ -52,8 +48,12 @@ const AddProduct = () => {
   }, []);
 
   const onSubmit = (event) => {
+    for(var pair of formData.entries()) {
+      console.log(pair[0]+ ', '+ pair[1]);
+   }
     event.preventDefault();
     setValues({ ...values, error: "", loading: true });
+    console.log(formData, "formdata")
     createProduct(user._id, token, formData).then((data) => {
       if (data.error) {
         setValues({ ...values, error: data.error });
@@ -90,7 +90,7 @@ const AddProduct = () => {
   const createProductForm = () => (
     <form>
       <div className="form-group text-dark">
-        <label className="form-label" for="photo">
+        <label className="form-label" htmlFor="photo">
           Add photo
         </label>
 
@@ -105,7 +105,7 @@ const AddProduct = () => {
         />
       </div>
       <div className="form-group">
-        <label className="form-label" for="name">
+        <label className="form-label" htmlFor="name">
           Product name
         </label>
         <input
@@ -117,7 +117,7 @@ const AddProduct = () => {
         />
       </div>
       <div className="form-group">
-        <label className="form-label" for="description">
+        <label className="form-label" htmlFor="description">
           Product description
         </label>
         <textarea
@@ -129,7 +129,7 @@ const AddProduct = () => {
         />
       </div>
       <div className="form-group">
-        <label className="form-label" for="price">
+        <label className="form-label" htmlFor="price">
           Unit price
         </label>
         <input
@@ -158,7 +158,7 @@ const AddProduct = () => {
         </select>
       </div>
       <div className="form-group">
-        <label className="form-label" for="photo">
+        <label className="form-label" htmlFor="photo">
           Number in stock
         </label>
         <input

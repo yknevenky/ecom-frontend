@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "../styles.css";
-import { API } from "../backend";
 import Base from "./Base";
 import Card from "./Card";
-import {Link} from "react-router-dom";
 import { getProducts } from "./helper/coreapicalls";
 
 export default function Home() {
