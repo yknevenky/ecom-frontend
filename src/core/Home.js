@@ -36,7 +36,7 @@ export default function Home() {
         <h1 className="text-dark text-left p-5">T shirts <span className="text-primary">&gt;</span></h1>
         <div className="row container bg-white rounded text-center">
           <div className="row">
-            {products.map((product, index) => {
+            {products.length > 0 ? products.map((product, index) => {
               return (
                 <div key={index} className="col-4">
                  
@@ -44,7 +44,7 @@ export default function Home() {
                   
                 </div>
               );
-            })}
+            }) : <h1 className="text-dark p-5 text-center display-5">No products</h1>}
           </div>
         </div>
       </div>

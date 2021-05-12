@@ -17,9 +17,10 @@ const Cart = () => {
   const loadAllProducts = (products) => {
     return (
       <React.Fragment>
-        <h1 className="ml-3 mb-5">All your products</h1>
+        <h1 className="ml-3 mb-5 d-block">All your products</h1>
         <div className="row">
-          {products.map((product, index) => (
+          {console.log(products, "in cart card")}
+          {products.length > 0 ? products.map((product, index) => (
             <div className="col-3">
               <Card
                 key={index}
@@ -30,7 +31,7 @@ const Cart = () => {
                 reload={reload}
               />
             </div>
-          ))}
+          )) : <h1 className="display-5 text-dark">No items in cart</h1>}
         </div>
       </React.Fragment>
     );
@@ -40,15 +41,15 @@ const Cart = () => {
     <Base
       title="Cart Page"
       description="Ready to checkout"
-      className="py-5 px-4 bg-white text-dark rounded"
+      className="py-5 px-4 bg-white text-dark rounded container"
     >
-      <div className="row mx-5">
+      
         {products.length > 0 ? (
           loadAllProducts(products)
         ) : (
           <h4 className="text-left">Cart is empty</h4>
         )}
-      </div>
+      
 
       <div className="card m-5 jumbotron bg-light p-5">
         <h1 className="mb-5">CHECK OUT</h1>
